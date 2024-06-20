@@ -1,5 +1,7 @@
 import java.util.InputMismatchException;
 
+import org.jasypt.util.text.BasicTextEncryptor;
+
 public class ValidationDocuments {
 
 	public static boolean validationCPF(String cpf) {
@@ -115,8 +117,21 @@ public class ValidationDocuments {
 				return (false);
 		} catch (InputMismatchException erro) {
 			return (false);
+			
 		}
 
+	}
+	
+	public String criptografarJasypt(String texto) {
+		BasicTextEncryptor encod = new BasicTextEncryptor();
+		encod.setPasswordCharArray("teste".toCharArray());
+		return encod.encrypt(texto);
+	}
+	
+	public String deserializaJasypt(String texto) {
+		BasicTextEncryptor encod = new BasicTextEncryptor();
+		encod.setPasswordCharArray("teste".toCharArray());
+		return encod.decrypt(texto);
 	}
 	
 	public static boolean validarCNS(String cns) {
